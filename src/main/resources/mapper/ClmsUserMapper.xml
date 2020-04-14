@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpg.cms.dao.ClmsUserMapper">
+  <resultMap id="BaseResultMap" type="com.tpg.cms.model.ClmsUser">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_college_id" jdbcType="INTEGER" property="userCollegeId" />
+    <result column="user_class_id" jdbcType="INTEGER" property="userClassId" />
+    <result column="user_group_id" jdbcType="INTEGER" property="userGroupId" />
+    <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
+    <result column="user_birthday" jdbcType="TIMESTAMP" property="userBirthday" />
+    <result column="user_phone" jdbcType="CHAR" property="userPhone" />
+    <result column="user_sex" jdbcType="INTEGER" property="userSex" />
+    <result column="user_remark" jdbcType="VARCHAR" property="userRemark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_password, user_college_id, user_class_id, user_group_id, 
+    user_avatar, user_birthday, user_phone, user_sex, user_remark, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clms_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clms_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tpg.cms.model.ClmsUser">
+    insert into clms_user (user_id, user_name, user_password, 
+      user_college_id, user_class_id, user_group_id, 
+      user_avatar, user_birthday, user_phone, 
+      user_sex, user_remark, status
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userCollegeId,jdbcType=INTEGER}, #{userClassId,jdbcType=INTEGER}, #{userGroupId,jdbcType=INTEGER}, 
+      #{userAvatar,jdbcType=VARCHAR}, #{userBirthday,jdbcType=TIMESTAMP}, #{userPhone,jdbcType=CHAR}, 
+      #{userSex,jdbcType=INTEGER}, #{userRemark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tpg.cms.model.ClmsUser">
+    insert into clms_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userCollegeId != null">
+        user_college_id,
+      </if>
+      <if test="userClassId != null">
+        user_class_id,
+      </if>
+      <if test="userGroupId != null">
+        user_group_id,
+      </if>
+      <if test="userAvatar != null">
+        user_avatar,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="userRemark != null">
+        user_remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userCollegeId != null">
+        #{userCollegeId,jdbcType=INTEGER},
+      </if>
+      <if test="userClassId != null">
+        #{userClassId,jdbcType=INTEGER},
+      </if>
+      <if test="userGroupId != null">
+        #{userGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="userAvatar != null">
+        #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=CHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userRemark != null">
+        #{userRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tpg.cms.model.ClmsUser">
+    update clms_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userCollegeId != null">
+        user_college_id = #{userCollegeId,jdbcType=INTEGER},
+      </if>
+      <if test="userClassId != null">
+        user_class_id = #{userClassId,jdbcType=INTEGER},
+      </if>
+      <if test="userGroupId != null">
+        user_group_id = #{userGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="userAvatar != null">
+        user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=CHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userRemark != null">
+        user_remark = #{userRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tpg.cms.model.ClmsUser">
+    update clms_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_college_id = #{userCollegeId,jdbcType=INTEGER},
+      user_class_id = #{userClassId,jdbcType=INTEGER},
+      user_group_id = #{userGroupId,jdbcType=INTEGER},
+      user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      user_phone = #{userPhone,jdbcType=CHAR},
+      user_sex = #{userSex,jdbcType=INTEGER},
+      user_remark = #{userRemark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

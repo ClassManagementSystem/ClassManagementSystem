@@ -1,27 +1,36 @@
 package com.tpg.cms.controller;
 
-import com.tpg.cms.dao.UserDao;
-import com.tpg.cms.model.SysUser;
-import com.tpg.cms.service.UserService;
+import com.tpg.cms.dao.ClmsUserMapper;
+import com.tpg.cms.model.ClmsUser;
+import com.tpg.cms.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-
+@Api(tags = "用户管理")
 @RestController
-    @RequestMapping("/users")
-    public class UserController {
+@RequestMapping("/users")
+public class UserController {
 
-        private static final Logger log = LoggerFactory.getLogger("adminLogger");
+    private static final Logger log = LoggerFactory.getLogger("adminLogger");
 
-//        @Autowired
-//        private UserService userService;
-//        @Autowired
-//        private UserDao userDao;
+//  @Autowired
+//  private UserService userService;
+    @Autowired
+    private ClmsUserMapper clmsUserMapper;
+
+
+    @ApiOperation(value = "根据Id查询用户信息")
+    @GetMapping("getUser/{id}")
+    public Result getUser(@PathVariable Integer id){
+        ClmsUser clmsUser = clmsUserMapper.selectByPrimaryKey(id);
+        return Result.OK().data("user",clmsUser);
+    }
+
+
 //
 //       // @LogAnnotation
 //        @PostMapping
