@@ -1,9 +1,19 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://47.107.162.1:3306/zy03?characterEncoding=UTF-8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: zy3-1
+#    password: 1QAZasdf%
+
+#服务端口
+server:
+  port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://47.107.162.1:3306/zy03?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.99.111:12336/demo?characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: zy3-1
-    password: 1QAZasdf%
+    username: root
+    password: puren
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: com.tpg.cms.model
