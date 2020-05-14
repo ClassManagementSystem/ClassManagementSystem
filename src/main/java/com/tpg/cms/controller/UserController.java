@@ -30,15 +30,13 @@ public class UserController {
         return Result.OK().data("user",clmsUser);
     }
 
-
+ //   @LogAnnotation
+  //  @PostMapping
+  // @ApiOperation(value = "保存用户")
+ //  @PreAuthorize("hasAuthority('sys:user:add')")
+  //  public SysUser saveUser() {
 //
-//       // @LogAnnotation
-//        @PostMapping
-//        @ApiOperation(value = "保存用户")
-//        @PreAuthorize("hasAuthority('sys:user:add')")
-//        public SysUser saveUser() {
-//
-//        }
+  // }
 //
 //
 //        @PutMapping
