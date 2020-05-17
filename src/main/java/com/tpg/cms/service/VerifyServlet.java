@@ -1,4 +1,4 @@
-package com.tpg.cms.Service;
+package com.tpg.cms.service;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
