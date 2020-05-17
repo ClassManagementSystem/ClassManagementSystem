@@ -29,6 +29,14 @@ public class UserController {
         ClmsUser clmsUser = clmsUserMapper.selectByPrimaryKey(id);
         return Result.OK().data("user",clmsUser);
     }
+    @ApiOperation(value = "根据Name查询用户信息")
+    @GetMapping("getUser/{userName}")
+    public Result getUser(@PathVariable String userName){
+        ClmsUser clmsUser = clmsUserMapper.selectByUserName(userName);
+        return Result.OK().data("user",clmsUser);
+    }
+
+
 
  //   @LogAnnotation
   //  @PostMapping

@@ -18,4 +18,6 @@ public interface ClmsUserMapper {
     int updateByPrimaryKeySelective(ClmsUser record);
 
     int updateByPrimaryKey(ClmsUser record);
+
+    ClmsUser selectByUserName(String userName);
 }

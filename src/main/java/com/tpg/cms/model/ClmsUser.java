@@ -1,8 +1,11 @@
 package com.tpg.cms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 
 public class ClmsUser {
     private Integer userId;
@@ -29,6 +32,28 @@ public class ClmsUser {
     private String userRemark;
 
     private Integer status;
+
+    private Collection<GrantedAuthority> authorities;
+    public ClmsUser(String userName, String userPassword, Collection<GrantedAuthority> authorities) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.authorities = authorities;
+    }
+
+    public ClmsUser(){
+
+    }
+
+    public ClmsUser(Integer userId, String userName, String userPassword){
+        this.userId=userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+    }
+
+
+    public Collection<GrantedAuthority> getAuthorities() {
+        return this.authorities;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -124,5 +149,28 @@ public class ClmsUser {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(o == null || getClass()!= o.getClass()) return false;
+        ClmsUser that = (ClmsUser) o;
+        return Objects.equals(userId, that.userId);
     }
 }
