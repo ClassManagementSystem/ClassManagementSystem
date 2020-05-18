@@ -28,7 +28,7 @@ public class LoginController {
     @Autowired
     JwtProvider jwtProvider;
 
-    @GetMapping("/login")
+    @GetMapping("/signin")
     @ResponseBody
     public ResponseEntity<Object> callbackLogin(){
         return new ResponseEntity<>("未登录", HttpStatus.FORBIDDEN);
@@ -39,6 +39,17 @@ public class LoginController {
     public ResponseEntity<Object> csginup(@RequestBody SignUpForm signUpForm){
         //具体逻辑
         return new ResponseEntity<>("注册成功", HttpStatus.OK);
+    }
+
+    //login
+    @PostMapping("login")
+    public Result login() {
+        return Result.OK().data("token","admin");
+    }
+    //info
+    @GetMapping("info")
+    public Result info() {
+        return Result.OK().data("roles","[admin]").data("name","admin").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
     }
 
 }

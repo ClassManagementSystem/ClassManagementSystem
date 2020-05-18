@@ -1,8 +1,8 @@
 package com.tpg.cms.config.security.customauths;
 
 
-import com.tpg.cms.Service.SysRoleService;
-import com.tpg.cms.Service.SysUserRoleService;
+import com.tpg.cms.service.SysRoleService;
+import com.tpg.cms.service.SysUserRoleService;
 import com.tpg.cms.dao.ClmsUserMapper;
 import com.tpg.cms.model.ClmsRole;
 import com.tpg.cms.model.ClmsUser;
