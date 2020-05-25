@@ -81,18 +81,4 @@ public class Page<T> {
             this.sortMethod = SORT_ASC; // 参 数 错 误 时 设 置 为 升 序
         }
     }
-
-    // 设 置 输 出 数 据
-    public void pagingDate(){
-        int start = (currentPage-1) * pageSize;  //起始索引
-        int end =  currentPage * pageSize; // 结 束 索 引
-        if(currentPage <= totalPage && end >= totalCount){
-            this.list = list.subList(start, totalCount); // 结 束 索 引 超 出 总 数 据 条 数
-        }else if(currentPage > totalPage){
-            this.currentPage = totalPage; // 当 前 页 码 超 出 总 页 数
-            this.list = currentPage > 0 ? list.subList((currentPage-1) * pageSize, totalCount):null;
-        }else {
-            this. list = list.subList(start , end);
-        }
-    }
 }

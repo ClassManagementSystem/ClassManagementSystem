@@ -24,6 +24,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public void restoreById(Integer id) {
+        clmsQuestionMapper.restoreById(id);
+    }  // 根 据 id 恢 复 已 删 除 的
+
+    @Override
     public void update(ClmsQuestion clmsQuestion) {
         clmsQuestionMapper.update(clmsQuestion); // 更 新 数 据
     }

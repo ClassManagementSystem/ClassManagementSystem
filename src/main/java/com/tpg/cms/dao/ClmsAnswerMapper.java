@@ -1,6 +1,7 @@
 package com.tpg.cms.dao;
 
 import com.tpg.cms.model.ClmsAnswer;
+import com.tpg.cms.model.ClmsQuestion;
 import com.tpg.cms.utils.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,26 +15,34 @@ import java.util.List;
 @Repository
 public interface ClmsAnswerMapper {
 
-    // 新 增  @param clmsAnswer
-    @Insert("insert into clms_answer(question_id, answer_content, answer_author, answer_mark) " +
-            "values (#{question_id}, #{answer_content}, #{answer_author}, #{answer_mark})")
+    // 新 增
+    @Insert("insert into clms_answer(question_id, answer_content, answer_author) " +
+            "values (#{question_id}, #{answer_content}, #{answer_author})")
     void save(ClmsAnswer clmsAnswer);
 
     // 根 据 id 查 询
-    @Select("select * from clms_answer where answer_status = 0 and answer_id = #{id}")
+    @Select("select * from clms_answer where answer_id = #{id}")
     ClmsAnswer getById(Integer id);
+
+    // 通 过 id 查 询 --- 查 询 未 删 除 的
+    @Select("select * from clms_answer where answer_status = 0 and answer_id = #{id}")
+    ClmsAnswer getNotDeletedById(Integer id);
 
     // 根 据 id 删 除
     @Update("update clms_answer set answer_status = 1 where answer_id = #{id}")
     void deletedById(Integer id);
 
+    // 根 据 id 恢 复 已 删 除 的
+    @Update("update clms_answer set answer_status = 0 where answer_id = #{id}")
+    void  restoreById(Integer id);
+
     // 更 新 数 据
     @Update("<script>" +
             "        update clms_answer set answer_id = #{answer_id}\n" +
-            "        <if test=\"question_id != null and question_id != ''\">\n" +
+            "        <if test=\"question_id!= null and question_id != ''\">\n" +
             "            ,question_id = #{question_id}\n" +
             "        </if>\n" +
-            "        <if test=\"answer_content !=n ull and answer_content != ''\">\n" +
+            "        <if test=\"answer_content != null and answer_content != ''\">\n" +
             "            ,answer_content = #{answer_content}\n" +
             "        </if>\n" +
             "        <if test=\"answer_author != null and answer_author != ''\">\n" +
@@ -48,14 +57,8 @@ public interface ClmsAnswerMapper {
 
     // 分 页 查 询
     @Select("<script>" +
-            "        select answer_id, question_id, answer_content, answer_good, answer_time, update_time, answer_author, answer_mark from cl_answer\n" +
-            "        where is_deleted = 0 \n" +
-            "        <if test=\"params.question_id!=null\">\n" +
-            "            and question_id = #{params.question_id}\n" +
-            "        </if>\n" +
-            "        <if test=\"params.answer_content!=null and params.answer_content!=''\">\n" +
-            "            and answer_content like CONCAT('%', #{params.answer_content}, '%')\n" +
-            "        </if>\n" +
+            "        select answer_id, question_id, answer_content, answer_good, answer_time, answer_update, answer_author, answer_mark, answer_status from clms_answer\n" +
+            "        where answer_status = answer_status \n" +
             "        <if test=\"params.answer_author!=null and params.answer_author!=''\">\n" +
             "            and answer_author like CONCAT('%', #{params.answer_author}, '%')\n" +
             "        </if>\n" +
@@ -65,6 +68,9 @@ public interface ClmsAnswerMapper {
             "        <if test=\"params.answer_mark!=null\">\n" +
             "            and answer_mark = #{params.answer_mark}\n" +
             "        </if>\n" +
+            "        <if test=\"params.answer_status!=null\">\n" +
+            "            and answer_status = #{params.answer_status}\n" +
+            "        </if>\n" +
             "        <if test=\"sortColumn!=null and sortColumn!=''\">\n" +
             "            order by ${sortColumn} ${sortMethod}\n" +
             "        </if>\n" +
@@ -72,10 +78,10 @@ public interface ClmsAnswerMapper {
             "</script>")
     List<ClmsAnswer> getByPage(Page<ClmsAnswer> page);
 
-    // 统 计 answer_status = 0 的 数 据 总 数
+    // 统 计 数 据 总 数
     @Select("<script>" +
             "        select count(*) from  clms_answer\n" +
-            "        where is_deleted = 0 \n" +
+            "        where answer_status = answer_status \n" +
             "        <if test=\"params.question_id!=null\">\n" +
             "            and question_id = #{params.question_id}\n" +
             "        </if>\n" +
@@ -91,11 +97,14 @@ public interface ClmsAnswerMapper {
             "        <if test=\"params.answer_mark!=null\">\n" +
             "            and answer_mark = #{params.answer_mark}\n" +
             "        </if>\n" +
+            "        <if test=\"params.answer_status!=null\">\n" +
+            "            and answer_status = #{params.answer_status}\n" +
+            "        </if>\n" +
             "</script>")
     int getCountByPage(Page<ClmsAnswer> page);
 
-    // 更 改 答 复 状 态
-    @Update("update cl_answer set answer_mark = #{mark} where answer_id = #{id}")
+    // 更 改 答 复 状 态 是 否 已 采 纳
+    @Update("update clms_answer set answer_mark = #{mark} where answer_id = #{id}")
     void changeAdopt(Integer id, int mark);
 
 }

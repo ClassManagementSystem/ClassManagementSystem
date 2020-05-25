@@ -1,7 +1,11 @@
 package com.tpg.cms.service;
 
 import com.tpg.cms.model.ClmsAnswer;
+import com.tpg.cms.model.ClmsQuestion;
 import com.tpg.cms.utils.Page;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 public interface AnswerService {
 
@@ -10,6 +14,9 @@ public interface AnswerService {
 
     // 根 据 id 删 除
     void deleteById(Integer id);
+
+    // 根 据 id 恢 复 已 删 除 的
+    void  restoreById(Integer id);
 
     // 更 新 数 据
     void update(ClmsAnswer clmsAnswer);
@@ -23,9 +30,12 @@ public interface AnswerService {
     // 根 据 id 查 询
     ClmsAnswer getById(Integer id);
 
+    // 通 过 id 查 询 --- 查 询 未 删 除 的
+    ClmsAnswer getNotDeletedById(Integer id);
+
     // 分 页 查 询
     Page<ClmsAnswer> getByPage(Page<ClmsAnswer> page);
 
     // 获 取 当 前 答 复 人 姓 名
-    String getUserName();
+   // String getUserName();
 }

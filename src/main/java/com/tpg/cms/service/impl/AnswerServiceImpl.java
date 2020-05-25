@@ -3,6 +3,7 @@ package com.tpg.cms.service.impl;
 import com.tpg.cms.dao.ClmsAnswerMapper;
 import com.tpg.cms.dao.ClmsQuestionMapper;
 import com.tpg.cms.model.ClmsAnswer;
+import com.tpg.cms.model.ClmsQuestion;
 import com.tpg.cms.service.AnswerService;
 import com.tpg.cms.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,19 @@ public class AnswerServiceImpl implements AnswerService {
         answerMapper.save(clmsAnswer); // 保存数据
         int qid = clmsAnswer.getQuestion_id();
         int aCount = questionMapper.getAnswerCount(qid);
-        // 更新问题的答复数
-        questionMapper.updateAnswerCount(qid, aCount);
+        questionMapper.updateAnswerCount(qid, aCount); // 更新问题的答复数
     }
-
 
     // 根 据 id 删 除 数 据
     @Override
     public void deleteById(Integer id) {
         answerMapper.deletedById(id);
+    }
+
+    // 根 据 id 恢 复 已 删 除 的
+    @Override
+    public void restoreById(Integer id) {
+        answerMapper.restoreById(id);
     }
 
     //更 新 数 据
@@ -44,37 +49,42 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void Adopted(Integer id) {
-        // 设置答复状态码,已采纳
-        int mark = 1;
+        int mark = 1;  // 设置答复状态码,已采纳
         answerMapper.changeAdopt(id, mark);
     }
 
     @Override
     public void notAdopted(Integer id) {
-        // 设置答复状态码,未采纳
-        int mark = 0;
+        int mark = 0; // 设置答复状态码,未采纳
         answerMapper.changeAdopt(id, mark);
     }
 
+    // 根 据 id 查 询
     @Override
     public ClmsAnswer getById(Integer id) {
-        return answerMapper.getById(id);//根据id查询
+        return answerMapper.getById(id);
+    }
+
+    // 根 据 id 查 询 --- 查 询 未 删 除 的
+    @Override
+    public ClmsAnswer getNotDeletedById(Integer id) {
+        return answerMapper.getNotDeletedById(id);
     }
 
     @Override
     public Page<ClmsAnswer> getByPage(Page<ClmsAnswer> page) {
-        // 先查询数据
+        // 页 面 数 据
         List<ClmsAnswer> answerList = answerMapper.getByPage(page);
         page.setList(answerList);
-        // 在查询总数
+        // 总 数 据 数
         int totalCount = answerMapper.getCountByPage(page);
         page.setTotalCount(totalCount);
         return page;
     }
 
     // 获 取 当 前 答 复 人 姓 名
-    @Override
-    public String getUserName() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
+//    @Override
+//    public String getUserName() {
+//        return SecurityContextHolder.getContext().getAuthentication().getName();
+//    }
 }

@@ -15,9 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/answer")
+@CrossOrigin
 public class AnswerController {
-    @Autowired
-    private QuestionService questionService;
+
+//    @Autowired
+//    private QuestionService questionService;
 
     @Autowired
     private AnswerService answerService;
@@ -25,60 +27,105 @@ public class AnswerController {
     // 保 存， 添 加 数 据
     @PostMapping("/save")
     public ResultAQ<Object> save(@RequestBody ClmsAnswer clmsAnswer){
-        clmsAnswer.setAnswer_author(answerService.getUserName());
-        answerService.save(clmsAnswer);
+        try{
+            // clmsAnswer.setAnswer_author(answerService.getUserName());
+            answerService.save(clmsAnswer);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，保存失败，请稍后再试！");
+        }
         return new ResultAQ<>("保存成功!");
     }
 
-    // 根据id删除
+    // 根 据 id 删 除
     @DeleteMapping("/delete/{id}")
     public ResultAQ<Object> delete(@PathVariable("id") Integer id){
-        answerService.deleteById(id);
+        try{
+            answerService.deleteById(id);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，删除失败，请稍后再试！");
+        }
         return new ResultAQ<>("删除成功!");
+    }
+
+    // 根 据 id 恢 复 已 删 除 的
+    @DeleteMapping("/restore/{id}")
+    public ResultAQ<Object> restore(@PathVariable("id") Integer id){
+        try{
+            answerService.restoreById(id);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，恢复失败，请稍后再试！");
+        }
+        return new ResultAQ<>("恢复成功!");
     }
 
     // 更 新 修 改 数 据
     @PutMapping("/update")
     public ResultAQ<Object> update(@RequestBody ClmsAnswer clmsAnswer){
-        answerService.update(clmsAnswer);
+        try{
+            answerService.update(clmsAnswer);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，修改失败，请稍后再试！");
+        }
         return new ResultAQ<>("修改成功!");
     }
 
     // 设置为已采纳
     @PutMapping("/Adopted/{id}")
     public ResultAQ<Object> Adopted(@PathVariable Integer id){
-        answerService.Adopted(id);
+        try{
+            answerService.Adopted(id);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，修改失败，请稍后再试！");
+        }
         return new ResultAQ<>("答复状态更新成功:已采纳!");
     }
 
     //设置为 未采纳
     @PutMapping("/notAdopt/{id}")
     public ResultAQ<Object> notAdopt(@PathVariable Integer id){
-        answerService.notAdopted(id);
+        try{
+            answerService.notAdopted(id);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，修改失败，请稍后再试！");
+        }
         return new ResultAQ<>("答复状态更新成功:未采纳!");
     }
 
-    // 根据id查询
+    // 根 据 id 查 询
     @GetMapping("/get/{id}")
     public ResultAQ<ClmsAnswer> get(@PathVariable("id") Integer id){
-        ClmsAnswer clmsAnswer = answerService.getById(id);
+        ClmsAnswer clmsAnswer;
+        try{
+            clmsAnswer = answerService.getById(id);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，查询失败，请稍后再试！");
+        }
+        return new ResultAQ<>(clmsAnswer);
+    }
+
+    // 根 据 id 查 询 --- 查 询 未 删 除 的 --- 预 留 给 前 台 的 接 口
+    @GetMapping("/getNotDeleted/{id}")
+    public ResultAQ<ClmsAnswer> getDeleted(@PathVariable("id") Integer id){
+        ClmsAnswer clmsAnswer;
+        try{
+            clmsAnswer = answerService.getNotDeletedById(id);
+        }catch (Exception e){
+            return new ResultAQ<>(ResultCode.ERROR, "系统错误，查询失败，请稍后再试！");
+        }
         return new ResultAQ<>(clmsAnswer);
     }
 
     // 分 页 查 询
     @PostMapping("/getByPage")
     public ResultAQ<Page<ClmsAnswer>> getByPage(@RequestBody Page<ClmsAnswer> page){
-        // 获取排序方式  page对象中 封装了 sortColumn 排序列
         String sortColumn = page.getSortColumn();
-        // 下划线的 排序列
         page.setSortColumn(sortColumn);
-        // 判断排序列不为空
         if(sortColumn.isEmpty()){
             // 点赞数量 提问时间，修改时间
-            String[] sortColumns = {"answer_good","answer_time", "update_time"};
+            String[] sortColumns = {"answer_good","answer_time", "answer_update"};
             List<String> sortList = Arrays.asList(sortColumns);
             if(!sortList.contains(sortColumn.toLowerCase())) {
-                return new ResultAQ<>(ResultCode.ERROR, "参数错误！");
+                return new ResultAQ<>(ResultCode.ERROR, "排序参数错误！");
             }
         }
         page = answerService.getByPage(page);
