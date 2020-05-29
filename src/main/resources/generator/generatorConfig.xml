@@ -14,8 +14,8 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.107.162.1:3306/zy03?characterEncoding=UTF-8" userId="zy3-1"
-                        password="1QAZasdf%">
+                        connectionURL="jdbc:mysql://121.199.63.124:3306/clms?characterEncoding=UTF-8" userId="root"
+                        password="root">
         </jdbcConnection>
         <!-- 如使用oracle请参考如下 -->
         <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
@@ -53,7 +53,7 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table tableName="clms_user" schema="" enableCountByExample="false"
+        <table tableName="sys_user_role" schema="" enableCountByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"/>
 

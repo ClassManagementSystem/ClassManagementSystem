@@ -1,12 +1,11 @@
 package com.tpg.cms.controller;
 
-import com.tpg.cms.model.ClmsAnswer;
 import com.tpg.cms.model.ClmsQuestion;
-import com.tpg.cms.service.AnswerService;
 import com.tpg.cms.service.QuestionService;
 import com.tpg.cms.utils.Page;
 import com.tpg.cms.utils.ResultAQ;
 import com.tpg.cms.utils.ResultCode;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/question")
 @CrossOrigin
+@Api(tags = "问答管理")
 public class QuestionControlle {
 
     @Autowired

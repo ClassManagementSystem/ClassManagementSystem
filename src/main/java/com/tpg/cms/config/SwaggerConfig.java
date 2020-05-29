@@ -20,7 +20,7 @@ public class SwaggerConfig {
                 .groupName("api")
                 .apiInfo(webApiInfo())
                 .select()
-                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+                //.paths(Predicates.not(PathSelectors.regex("/admin/.*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build();
 
@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .title("班务管理API文档")
                 .description("本文档描述了班务管理接口定义")
                 .version("1.0")
-                .contact(new Contact("java", "http://localhost:8080/doc.html", "1521652775@qq.com"))
+                .contact(new Contact("java", "http://localhost:8081/doc.html", "1521652775@qq.com"))
                 .build();
     }
 }

@@ -1,7 +1,6 @@
 package com.tpg.cms.dao;
 
 import com.tpg.cms.model.ClmsAnswer;
-import com.tpg.cms.model.ClmsQuestion;
 import com.tpg.cms.utils.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

@@ -1,176 +1,48 @@
 package com.tpg.cms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.security.core.GrantedAuthority;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.Objects;
-
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClmsUser {
-    private Integer userId;
+    //用户id
+    private Integer user_id;
 
-    private String userName;
+    //用户名
+    private String user_name;
 
-    private String userPassword;
+    //用户密码
+    private String user_password;
 
-    private Integer userCollegeId;
+    //学院id
+    private Integer user_college_id;
 
-    private Integer userClassId;
+    //班级id
+    private Integer user_class_id;
 
-    private Integer userGroupId;
+    //组id
+    private Integer user_group_id;
 
-    private String userAvatar;
+    //用户头像
+    private String user_avatar;
 
-    @JsonFormat(locale = "yyyy-mm-dd")
-    private Date userBirthday;
+    //用户生日
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String user_birthday;
 
-    private String userPhone;
+    //手机号
+    private String user_phone;
 
-    private Integer userSex;
+    //性别
+    private Integer user_sex;
 
-    private String userRemark;
+    //备注/介绍
+    private String user_remark;
 
+    //状态
     private Integer status;
 
-    private Collection<GrantedAuthority> authorities;
-    public ClmsUser(String userName, String userPassword, Collection<GrantedAuthority> authorities) {
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.authorities = authorities;
-    }
 
-    public ClmsUser(){
-
-    }
-
-    public ClmsUser(Integer userId, String userName, String userPassword){
-        this.userId=userId;
-        this.userName = userName;
-        this.userPassword = userPassword;
-    }
-
-
-    public Collection<GrantedAuthority> getAuthorities() {
-        return this.authorities;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword == null ? null : userPassword.trim();
-    }
-
-    public Integer getUserCollegeId() {
-        return userCollegeId;
-    }
-
-    public void setUserCollegeId(Integer userCollegeId) {
-        this.userCollegeId = userCollegeId;
-    }
-
-    public Integer getUserClassId() {
-        return userClassId;
-    }
-
-    public void setUserClassId(Integer userClassId) {
-        this.userClassId = userClassId;
-    }
-
-    public Integer getUserGroupId() {
-        return userGroupId;
-    }
-
-    public void setUserGroupId(Integer userGroupId) {
-        this.userGroupId = userGroupId;
-    }
-
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar == null ? null : userAvatar.trim();
-    }
-
-    public Date getUserBirthday() {
-        return userBirthday;
-    }
-
-    public void setUserBirthday(Date userBirthday) {
-        this.userBirthday = userBirthday;
-    }
-
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone == null ? null : userPhone.trim();
-    }
-
-    public Integer getUserSex() {
-        return userSex;
-    }
-
-    public void setUserSex(Integer userSex) {
-        this.userSex = userSex;
-    }
-
-    public String getUserRemark() {
-        return userRemark;
-    }
-
-    public void setUserRemark(String userRemark) {
-        this.userRemark = userRemark == null ? null : userRemark.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-
-    public boolean isEnabled() {
-        return true;
-    }
-
-    @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if(o == null || getClass()!= o.getClass()) return false;
-        ClmsUser that = (ClmsUser) o;
-        return Objects.equals(userId, that.userId);
-    }
 }

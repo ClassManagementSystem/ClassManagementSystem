@@ -3,11 +3,9 @@ package com.tpg.cms.service.impl;
 import com.tpg.cms.dao.ClmsAnswerMapper;
 import com.tpg.cms.dao.ClmsQuestionMapper;
 import com.tpg.cms.model.ClmsAnswer;
-import com.tpg.cms.model.ClmsQuestion;
 import com.tpg.cms.service.AnswerService;
 import com.tpg.cms.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

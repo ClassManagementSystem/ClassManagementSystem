@@ -1,11 +1,7 @@
 package com.tpg.cms.service;
 
 import com.tpg.cms.model.ClmsAnswer;
-import com.tpg.cms.model.ClmsQuestion;
 import com.tpg.cms.utils.Page;
-import org.apache.ibatis.annotations.Update;
-
-import java.util.List;
 
 public interface AnswerService {
 
