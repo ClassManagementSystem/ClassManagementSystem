@@ -21,7 +21,7 @@ public interface ClmsReportMapper {
 
     int updateByPrimaryKey(ClmsReport record);
 
-    //通过报告id查询，
+    //通过报告id查询
     @Select("select * from clms_report where report_id = #{id}")
     ClmsReport getById(Integer id);
 

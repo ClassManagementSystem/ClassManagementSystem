@@ -1,121 +1,29 @@
 package com.tpg.cms.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class ClmsReport {
-    private Integer reportId;
+    private Integer report_id;
 
-    private Integer reportType;
+    private Integer report_type;
 
-    private String reportContent;
+    private String report_content;
 
-    private String reportDifficulty;
+    private String report_difficulty;
 
-    private String reportWay;
+    private String report_way;
 
-    private String reportExperience;
+    private String report_experience;
 
-    private String reportNextplan;
+    private String report_nextplan;
 
-    private Date createTime;
+    private Date create_time;
 
-    private Date updateTime;
+    private Date update_time;
 
-    private Integer isChecked;
+    private Integer is_checked;
 
-    public Integer getReportId() {
-        return reportId;
-    }
-
-    public void setReportId(Integer reportId) {
-        this.reportId = reportId;
-    }
-
-    public Integer getReportType() {
-        return reportType;
-    }
-
-    public void setReportType(Integer reportType) {
-        this.reportType = reportType;
-    }
-
-    public String getReportContent() {
-        return reportContent;
-    }
-
-    public void setReportContent(String reportContent) {
-        this.reportContent = reportContent == null ? null : reportContent.trim();
-    }
-
-    public String getReportDifficulty() {
-        return reportDifficulty;
-    }
-
-    public void setReportDifficulty(String reportDifficulty) {
-        this.reportDifficulty = reportDifficulty == null ? null : reportDifficulty.trim();
-    }
-
-    public String getReportWay() {
-        return reportWay;
-    }
-
-    public void setReportWay(String reportWay) {
-        this.reportWay = reportWay == null ? null : reportWay.trim();
-    }
-
-    public String getReportExperience() {
-        return reportExperience;
-    }
-
-    public void setReportExperience(String reportExperience) {
-        this.reportExperience = reportExperience == null ? null : reportExperience.trim();
-    }
-
-    public String getReportNextplan() {
-        return reportNextplan;
-    }
-
-    public void setReportNextplan(String reportNextplan) {
-        this.reportNextplan = reportNextplan == null ? null : reportNextplan.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(Integer isChecked) {
-        this.isChecked = isChecked;
-    }
-
-    @Override
-    public String toString() {
-        return "ClmsReport{" +
-                "reportId=" + reportId +
-                ", reportType=" + reportType +
-                ", reportContent='" + reportContent + '\'' +
-                ", reportDifficulty='" + reportDifficulty + '\'' +
-                ", reportWay='" + reportWay + '\'' +
-                ", reportExperience='" + reportExperience + '\'' +
-                ", reportNextplan='" + reportNextplan + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", isChecked=" + isChecked +
-                '}';
-    }
 }
