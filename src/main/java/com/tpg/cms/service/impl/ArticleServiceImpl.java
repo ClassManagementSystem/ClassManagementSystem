@@ -56,10 +56,10 @@ public class ArticleServiceImpl implements ArticleService {
         List<ArticleStatistics> asList = new ArrayList<>();
         for(Map m : maps){
             ArticleStatistics as = new ArticleStatistics();
-            as.setName((String) m.get("article_author"));
-            as.setArticle_count(Integer.valueOf(m.get("article_count").toString()).intValue());
-            as.setLike_count(Integer.valueOf(m.get("like_count").toString()).intValue());
-            as.setComment_count(Integer.valueOf(m.get("comment_count").toString()).intValue());
+            as.setName(m.get("user_name").toString());
+            as.setArticle_count(Integer.parseInt(m.get("article_count").toString()));
+            as.setLike_count(Integer.parseInt(m.get("like_count").toString()));
+            as.setComment_count(Integer.parseInt(m.get("comment_count").toString()));
             asList.add(as);
         }
         page.setList(asList);
