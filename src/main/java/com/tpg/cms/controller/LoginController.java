@@ -21,7 +21,7 @@ public class LoginController {
     //info
     @GetMapping("info")
     public Result info() {
-        return Result.OK().data("roles","[admin]").data("name","admin").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        return Result.OK().data("roles","[admin]").data("name","admin").data("avatar","https://images.pexels.com/photos/4319001/pexels-photo-4319001.jpeg?crop=entropy&cs=srgb&dl=man-in-white-t-shirt-and-brown-shorts-surfing-on-sea-waves-4319001.jpg&fit=crop&fm=jpg&h=800&w=640");
     }
 
 }
