@@ -56,11 +56,11 @@ public class ArticleTypeServiceImpl implements ArticleTypeService {
         for(Map m : maps){
             ArticleStatistics as = new ArticleStatistics();
             as.setName((String) m.get("type_name"));
-            as.setType_count(Integer.valueOf(m.get("type_count").toString()).intValue());
+            as.setType_count(Integer.parseInt(m.get("article_count").toString()));
             // countMap.put("typeCounts", Integer.valueOf(m.get("").toString()).intValue());
             // as.setCountMap(countMap);
             asList.add(as);
-            as.setPercent(Double.valueOf(m.get("percent").toString()).doubleValue());
+            as.setPercent(Double.parseDouble(m.get("percent").toString()));
         }
         page.setList(asList);
         // 再查询总数

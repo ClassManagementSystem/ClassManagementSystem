@@ -26,6 +26,7 @@ public class QuestionControlle {
 
     // 保 存，新 增 数 据
     @PostMapping("/save")
+
     public ResultAQ<Object> save(@RequestBody ClmsQuestion clmsQuestion){
         try{
             // clmsQuestion.setQuestion_author(answerService.getUserName());

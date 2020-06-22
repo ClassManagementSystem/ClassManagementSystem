@@ -159,13 +159,13 @@ public interface ClmsArticleMapper {
 
     //获取用户文章类型信息
     @Select("<script>" +
-            "        select article_author," +
+            "        select user_name," +
             "        count(article_author) article_count," +
             "        sum(article_like) like_count," +
-            "        sum(article_comment) comment_count," +
-            "        from clms_article\n" +
-            "        where is_deleted = 0 \n" +
-            "        group by article_author \n" +
+            "        sum(article_comment) comment_count\n" +
+            "        from clms_article a,clms_user u\n" +
+            "        where a.is_deleted = 0 and a.article_author = u.user_id \n" +
+            "        group by u.user_name \n" +
             "        <if test=\"sortColumn!=null and sortColumn!=''\">\n" +
             "            order by ${sortColumn} ${sortMethod}\n" +
             "        </if>\n" +

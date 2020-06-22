@@ -70,10 +70,9 @@ public interface ArticleTypeMapper {
 
     //查询各类型对应的文章数以及占比
     @Select("<script>" +
-            "        select type_name, type_count," +
-            "        type_count/(select count(*) from clms_type) as percent" +
+            "        select type_name, article_count," +
+            "        article_count/(select count(*) from clms_type) as percent" +
             "        from clms_type\n" +
-            "        where is_deleted = 0 \n" +
             "        <if test=\"sortColumn!=null and sortColumn!=''\">\n" +
             "            order by ${sortColumn} ${sortMethod}\n" +
             "        </if>\n" +
