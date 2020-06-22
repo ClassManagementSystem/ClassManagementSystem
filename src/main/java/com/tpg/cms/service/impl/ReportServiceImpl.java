@@ -35,4 +35,16 @@ public class ReportServiceImpl implements ReportService {
         page.setTotalCount(totalCount);
         return page;
     }
+
+    @Override
+    public void isCheck(Integer id) {
+        int check = 1; //设置已批阅
+        clmsReportMapper.changeCheck(id, check);
+    }
+
+    @Override
+    public void noCheck(Integer id) {
+        int check = 0; //设置为未批阅
+        clmsReportMapper.changeCheck(id, check);
+    }
 }

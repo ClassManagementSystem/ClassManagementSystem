@@ -15,5 +15,9 @@ public interface ReportService {
     // 分 页 查 询
     Page<ClmsReport> getByPage(Page<ClmsReport> page);
 
+    // 设 置 为 已 批阅
+    void isCheck(Integer id);
 
+    // 设 置 为 未 批阅
+    void noCheck(Integer id);
 }
