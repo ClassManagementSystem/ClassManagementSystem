@@ -51,6 +51,7 @@ public class SysPermissionController {
     @GetMapping("toAssign/{roleId}")
     public Result toAssign(@PathVariable String roleId) {
         List<SysPermission> list = permissionService.selectAllMenu(roleId);
+        System.out.println(list);
         return Result.OK().data("children", list);
     }
 

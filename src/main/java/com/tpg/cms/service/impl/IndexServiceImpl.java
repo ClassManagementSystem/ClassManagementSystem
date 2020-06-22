@@ -37,6 +37,7 @@ public class IndexServiceImpl implements IndexService {
      * @param username
      * @return
      */
+    @Override
     public Map<String, Object> getUserInfo(String username) {
         Map<String, Object> result = new HashMap<>();
         SysUser user = sysUserService.selectByUsername(username);
@@ -68,6 +69,7 @@ public class IndexServiceImpl implements IndexService {
      * @param username
      * @return
      */
+    @Override
     public List<JSONObject> getMenu(String username) {
         SysUser user = sysUserService.selectByUsername(username);
 

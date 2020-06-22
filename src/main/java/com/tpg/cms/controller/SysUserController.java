@@ -1,7 +1,6 @@
 package com.tpg.cms.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.tpg.cms.config.MD5;
 import com.tpg.cms.model.SysUser;
 import com.tpg.cms.service.SyRoleService;
 import com.tpg.cms.service.SysUserService;
@@ -9,8 +8,10 @@ import com.tpg.cms.utils.Result;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +49,9 @@ public class SysUserController {
     @ApiOperation(value = "新增管理用户")
     @PostMapping("save")
     public Result save(@RequestBody SysUser user) {
-        user.setPassword(MD5.encrypt(user.getPassword()));
+        //user.setPassword(MD5.encrypt(user.getPassword()));
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setCreateTime(new Date());
         sysUserService.save(user);
         return Result.OK();
     }
