@@ -1,13 +1,18 @@
 package com.tpg.cms.model;
 
-public class ClmsGroup {
-    private Integer groupId;
+import lombok.Data;
 
-    private String groupName;
+@Data
+public class ClmsGroup {
+    private Integer group_id;
+
+    private String group_name;
 
     private Integer status;
 
-    public Integer getGroupId() {
+    private Integer group_count;
+
+    /*public Integer getGroupId() {
         return groupId;
     }
 
@@ -29,5 +34,5 @@ public class ClmsGroup {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
+    }*/
 }

@@ -73,4 +73,9 @@ public class ClassController {
         return new ResultAQ<>(page);
     }
 
+    @PostMapping("getAll")
+    public ResultAQ<List<ClmsClass>> getAll(){
+        return new ResultAQ<>(classService.getAll());
+    }
+
 }

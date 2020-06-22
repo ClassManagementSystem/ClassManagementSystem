@@ -31,4 +31,6 @@ public interface GroupService {
     // 分 页 查 询
     Page<ClmsGroup> getByPage(Page<ClmsGroup> page);
 
+    List<ClmsGroup> getAll();
+
 }

@@ -75,4 +75,9 @@ public class GroupController {
         return new ResultAQ<>(page);
     }
 
+    @PostMapping("getAll")
+    public ResultAQ<List<ClmsGroup>> getAll(){
+        return new ResultAQ<>(groupService.getAll());
+    }
+
 }

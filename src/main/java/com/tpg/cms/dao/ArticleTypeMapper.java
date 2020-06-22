@@ -38,9 +38,9 @@ public interface ArticleTypeMapper {
 
     // 分 页 查 询
     @Select("<script>" +
-            "        select type_id, type_name, count(*) as article_count\n"+
-            "        from clms_type, clms_article\n"+
-            "        where type_id = article_type\n"+
+            "        select type_id, type_name, (select count(*) from clms_article where clms_article.article_type=clms_type.type_id) as article_count\n"+
+            "        from clms_type\n"+
+            "        where 1=1\n"+
             "        <if test=\"params.type_id!=null\">\n" +
             "            and type_id = #{params.type_id}\n" +
             "        </if>\n" +
