@@ -42,6 +42,9 @@ public interface ClmsQuestionMapper {
             "        <if test=\"question_author!=null and question_author!=''\">\n" +
             "            ,question_author = #{question_author}\n" +
             "        </if>\n" +
+            "        <if test=\"question_good!=null\">\n" +
+            "            ,question_good = #{question_good}\n" +
+            "        </if>\n" +
             "        <if test=\"question_mark!=null\">\n" +
             "            ,question_mark = #{question_mark}\n" +
             "        </if>\n" +

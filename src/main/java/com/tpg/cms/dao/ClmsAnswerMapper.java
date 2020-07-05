@@ -50,6 +50,9 @@ public interface ClmsAnswerMapper {
             "        <if test=\"answer_mark!=null\">\n" +
             "            ,answer_mark = #{answer_mark}\n" +
             "        </if>\n" +
+            "        <if test=\"answer_good!=null\">\n" +
+            "            ,answer_good = #{answer_good}\n" +
+            "        </if>\n" +
             "        where answer_id = #{answer_id}" +
             "</script>")
     void update(ClmsAnswer clmsAnswer);
